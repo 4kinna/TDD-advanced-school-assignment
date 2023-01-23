@@ -3,6 +3,8 @@ package com.example.tddadvancedschoolassignment.entity;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.Objects;
+
 @Entity
 public class AppUser {
 
@@ -18,14 +20,26 @@ public class AppUser {
 
 
     public AppUser(String username, String password) {
+        this.username=username;
+        this.password=password;
 
     }
 
     public String getUsername() {
-        return "";
+        return username;
     }
 
     public String getPassword() {
-        return "";
+        return password;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser appUser = (AppUser) o;
+        return id == appUser.id && Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
+    }
+
+
 }
